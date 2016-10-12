@@ -1,0 +1,36 @@
+The reference angle in the output file is the desired output from the motor.
+The logged angle is the actual angle logged as having been turned.
+
+The error can be calculated and mapped as the difference between the two; we must
+adjust the settings on the motor to minimise this.
+This is what the PID controller does - by calculating the error, it corrects this to minimise experienced error.
+
+
+Currently in motor_position_example.py, we may adjust the P-gain values (proportional gain, the first term of the equation,
+written as k_p variable), the integral gain (to reduce steady state error (k_i)) and differential gain.
+
+According to the slides, we can perform the Ziegler-Nichols heuristic to tune our motors.
+The steps are:
+
+set k_i and k_d to 0 (that's how they are given to us). Increase k_p until system starts oscillating with period p_u (just
+an arbitrary variable name). This can be observed if we plot the log of the motor as the reference and real error will oscillate.
+The period of a wave is (frequency)^-1. We can calculate this from our data. p_u should be logged in seconds.
+The difference in the old k_p and the new one should be saved as k_u.
+
+We now set the following values:
+
+k_p = 0.6 * k_u
+
+k_i = (2 * k_p) / p_u
+
+k_d = (k_p * p_u) / 8
+
+
+Other things to tweak:
+
+Minimum PWM to compensate for friction.
+
+
+All of the above steps should be tweaked per motor
+
+
