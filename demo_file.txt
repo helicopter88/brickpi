@@ -1,0 +1,7 @@
+
+count = 100.0
+
+# Connecting to the pi
+ssh-pi 74:da:38:5d:ff:28
+
+
