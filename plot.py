@@ -35,7 +35,18 @@ for d in data:
 		difference_0.append(float(row[3]) - float(row[4]))
 		difference_1.append(float(row[1]) - float(row[2]))
 
+
+plt.subplot(2, 1, 1)
+plt.plot(time, actual_0)
+plt.plot(time, reference_0)
+plt.plot(time, difference_0)
+plt.ylabel('Motor 0')
+plt.title('Error Plotting')
+
+plt.subplot(2, 1, 2)
 plt.plot(time, actual_1)
 plt.plot(time, reference_1)
 plt.plot(time, difference_1)
+plt.ylabel('Motor 1')
+plt.xlabel('Time')
 plt.show()
